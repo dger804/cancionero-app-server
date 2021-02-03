@@ -22,7 +22,7 @@ const userSchema = new Schema({
     validate: [
       {
         validator(value){
-          return models.user.findOne({ email: value })
+          return models.User.findOne({ email: value })
             .then(user => !user )
             .catch(() => false )
         },
