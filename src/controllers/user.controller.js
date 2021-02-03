@@ -6,7 +6,7 @@ const { create } = require('../models/user.model');
 
 module.exports = {
   async create(req,res){
-    try{
+    try{      
       const { apodo, password, nombre, email, carpetas, canciones, imgperfil, tipo } = req.body;
       if(password.length < 4 || password.length > 8){
         throw new Error('Su contraseña debe ser entre 4 y 8 dígitos')
