@@ -1,8 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const cryptoRandomString = require('crypto-random-string');
 const User = require('../models/user.model');
-const { create } = require('../models/user.model');
 
 module.exports = {
   async create(req,res){
@@ -23,4 +21,25 @@ module.exports = {
       res.status(400).json({ message: err.message })
     }
   },
+  async list(req, res){
+    try{
+      const user = await User.find().select('-password');
+      res.status(200).json({ message: 'Usuario encontrado', data: user });
+    }catch(err){
+      res.status(404).json({ message: err.message });
+    }
+  },
+  async show(req, res){
+    try{
+      const id = req.userId;
+      const user = await User.findById(id).select('-password');
+      console.log(req.status)
+      if(!user){
+        throw new Error('Usuario no encontrado');
+      }
+      res.status(200).json({ message: 'Usuario encontrado', data: user });
+    }catch(err){
+      res.status(404).json({ message: err.message });
+    }
+  }
 }
