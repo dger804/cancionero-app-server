@@ -33,7 +33,6 @@ module.exports = {
     try{
       const id = req.userId;
       const user = await User.findById(id).select('-password');
-      console.log(req.status)
       if(!user){
         throw new Error('Usuario no encontrado');
       }
