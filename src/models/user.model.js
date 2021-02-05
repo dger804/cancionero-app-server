@@ -31,12 +31,12 @@ const userSchema = new Schema({
     ]
   },
   carpetas: {
-    type: String,
-    default: ''
+    type: [String],
+    default: []
   },
   canciones: {
-    type: String,
-    default: ''
+    type: [String],
+    default: []
   },
   imgperfil: {
     type: String,
