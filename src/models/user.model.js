@@ -34,10 +34,6 @@ const userSchema = new Schema({
     type: [String],
     default: []
   },
-  canciones: {
-    type: [String],
-    default: []
-  },
   imgperfil: {
     type: String,
     default: ''
