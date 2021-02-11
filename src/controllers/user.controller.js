@@ -40,5 +40,26 @@ module.exports = {
     }catch(err){
       res.status(404).json({ message: err.message });
     }
+  },
+  async login(req, res){
+    try{
+      const { email, password }= req.body;
+      const user = await User.findOne({ email });
+      if(!user){
+        throw new error( 'Email o contraseña errados');
+      }
+      const isValid = await bcrypt.compare(password, user.password);
+      if(!isValid){
+        throw new error('Email o contraseña errados');
+      }
+      const token = jwt.sign(
+        { id: user._id },
+        process.env.SECRET,
+        { expiresIn: 60 * 60 * 24}
+      )
+      res.status(200).json({ token });
+    }catch(err){
+      res.status(400).json({ message: err.message });
+    }
   }
 }

@@ -3,6 +3,7 @@ const userController = require('../controllers/user.controller');
 const { auth } = require('../utils/auth');
 
 router.route('/').post(userController.create);
+router.route('/login').post(userController.login);
 router.route('/').get(userController.list);
 router.route('/:usersId').get(auth, userController.show);
 
