@@ -1,9 +1,10 @@
 const { model, Schema, models } = require('mongoose');
 
 const songSchema = new Schema({
-  Folderid:{
-    type: String,
-    default: ''
+  carpetaid:{ 
+    type: [{ type: Schema.Types.ObjectId,
+      ref: 'Folder'
+    }],
   },
   titulo: {
     type: String,
@@ -21,6 +22,8 @@ const songSchema = new Schema({
     type: String,
     default: ''
   },
+}, {
+  timestamps: true
 })
 const Song = model('Song', songSchema)
 module.exports = Song
