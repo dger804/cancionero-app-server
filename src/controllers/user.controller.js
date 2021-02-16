@@ -24,7 +24,7 @@ module.exports = {
   async list(req, res){
     try{
       const user = await User.find().select('-password');
-      res.status(200).json({ message: 'Usuario encontrado', data: user });
+      res.status(200).json({ message: 'Usuarios encontrados', data: user });
     }catch(err){
       res.status(404).json({ message: err.message });
     }
