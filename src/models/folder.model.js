@@ -2,8 +2,9 @@ const { model, Schema, models } = require('mongoose');
 
 const folderSchema = new Schema ({
   Userid: {
-    type: String,
-    required: true
+    type: [{ type: Schema.Types.ObjectId,
+      ref: 'User'
+      }],
   },
   titulo: {
     type: String,
