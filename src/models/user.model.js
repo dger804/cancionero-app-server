@@ -31,8 +31,9 @@ const userSchema = new Schema({
     ]
   },
   carpetas: {
-    type: [String],
-    default: []
+    type: [{ type: Schema.Types.ObjectId,
+      ref: 'Folder'
+    }],
   },
   imgperfil: {
     type: String,
